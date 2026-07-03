@@ -1,0 +1,17 @@
+{
+  "name": "skybit",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hardhat project for Skybit (SKY) on Polygon",
+  "license": "MIT",
+  "scripts": {
+    "compile": "hardhat compile",
+    "deploy:amoy": "hardhat run deploy.js --network amoy",
+    "deploy:polygon": "hardhat run deploy.js --network polygon"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^6.1.0",
+    "dotenv": "^16.4.5",
+    "hardhat": "^2.22.17"
+  }
+}
