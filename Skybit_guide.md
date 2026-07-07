@@ -1,8 +1,8 @@
-# Skybit (SKY) — specyfikacja i wdrożenie
+# Avenium (AVEN) — specyfikacja i wdrożenie
 
 ## 1) Kod smart kontraktu
 
-Plik: `/home/jurek/Documents/Crypto/Skybit.sol`
+Plik: `/home/jurek/Documents/Crypto/contracts/Avenium.sol`
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -10,13 +10,13 @@ pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-/// @title Skybit (SKY)
-/// @notice Fixed-supply ERC-20 token: 21,000,000 SKY minted once to the deployer.
-contract Skybit is ERC20 {
+/// @title Avenium (AVEN)
+/// @notice Fixed-supply ERC-20 token: 21,000,000 AVEN minted once to the deployer.
+contract Avenium is ERC20 {
     // Całkowita podaż: 21 mln tokenów z 18 miejscami po przecinku (standard ERC-20).
     uint256 public constant MAX_SUPPLY = 21_000_000 * 10 ** 18;
 
-    constructor() ERC20("Skybit", "SKY") {
+    constructor() ERC20("Avenium", "AVEN") {
         // Mint całej puli do adresu wdrażającego kontrakt (msg.sender).
         // Po deployment nie ma dodatkowych funkcji mint/burn, więc podaż jest stała.
         _mint(msg.sender, MAX_SUPPLY);
@@ -43,7 +43,7 @@ Najprostszy wariant: użyj DEX w stylu V2, np. PancakeSwap V2, QuickSwap V2 lub 
 2. Miej w portfelu:
    - SKY (po deployu)
    - USDT na tej samej sieci
-   - trochę natywnego gas tokena: MATIC lub BNB
+    - trochę natywnego gas tokena: POL lub BNB
 3. Dodaj kontrakt SKY do MetaMask po adresie wdrożenia, żeby widzieć saldo.
 
 ### Krok 2 — wybierz cenę startową
@@ -121,7 +121,7 @@ pragma solidity ^0.8.20;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 
-contract SkybitMultisend {
+contract AveniumMultisend {
     using SafeERC20 for IERC20;
 
     function batchTransfer(

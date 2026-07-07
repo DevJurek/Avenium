@@ -10,13 +10,12 @@ module.exports = {
     settings: {
       optimizer: {
         enabled: true,
-        runs: 200,
+        runs: 1000000,
       },
     },
   },
   paths: {
-    // Skybit.sol leży w katalogu projektu, więc ustawiamy sources na bieżący folder.
-    sources: "./",
+    sources: "./contracts",
     tests: "./test",
     cache: "./cache",
     artifacts: "./artifacts",

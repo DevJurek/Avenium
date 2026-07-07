@@ -6,13 +6,13 @@ async function main() {
   // Kompilacja przed deploymentem, żeby mieć pewność, że artefakty są aktualne.
   await hre.run("compile");
 
-  const Skybit = await hre.ethers.getContractFactory("Skybit");
-  const skybit = await Skybit.deploy();
+  const Avenium = await hre.ethers.getContractFactory("Avenium");
+  const avenium = await Avenium.deploy();
 
-  await skybit.waitForDeployment();
+  await avenium.waitForDeployment();
 
-  const address = await skybit.getAddress();
-  console.log("Skybit deployed to:", address);
+  const address = await avenium.getAddress();
+  console.log("Avenium deployed to:", address);
 
   // Zapis adresu do pliku tekstowego w tym samym folderze.
   const outPath = path.join(__dirname, "deployed_address.txt");

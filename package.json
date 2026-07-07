@@ -1,11 +1,21 @@
 {
-  "name": "skybit",
+  "name": "avenium",
   "version": "1.0.0",
   "private": true,
-  "description": "Hardhat project for Skybit (SKY) on Polygon",
+  "description": "Hardhat project for Avenium (AVEN) on Polygon",
   "license": "MIT",
   "scripts": {
     "compile": "hardhat compile",
+    "airdrop": "hardhat run airdrop.js",
+    "airdrop:polygon": "hardhat run airdrop.js --network polygon",
+    "airdrop:amoy": "hardhat run airdrop.js --network amoy",
+    "claim:generate": "node generate-claim.js",
+    "claim:deploy": "hardhat run deploy-claim.js",
+    "claim:deploy:polygon": "hardhat run deploy-claim.js --network polygon",
+    "claim:deploy:amoy": "hardhat run deploy-claim.js --network amoy",
+    "claim:fund": "hardhat run fund-claim.js",
+    "claim:fund:polygon": "hardhat run fund-claim.js --network polygon",
+    "claim:fund:amoy": "hardhat run fund-claim.js --network amoy",
     "deploy:amoy": "hardhat run deploy.js --network amoy",
     "deploy:polygon": "hardhat run deploy.js --network polygon"
   },
@@ -13,5 +23,8 @@
     "@nomicfoundation/hardhat-toolbox": "^6.1.0",
     "dotenv": "^16.4.5",
     "hardhat": "^2.22.17"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.6.1"
   }
 }

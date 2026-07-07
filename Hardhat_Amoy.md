@@ -20,7 +20,7 @@ POLYGON_RPC_URL=https://polygon-rpc.com
 POLYGON_AMOY_RPC_URL=https://rpc-amoy.polygon.technology
 ```
 
-Uwaga: `PRIVATE_KEY` powinien należeć do portfela, który ma dostać całą podaż SKY przy deployu.
+Uwaga: `PRIVATE_KEY` powinien należeć do portfela, który ma dostać całą podaż AVEN przy deployu.
 
 ## 3) Kompilacja
 
@@ -36,7 +36,7 @@ Najpierw upewnij się, że masz trochę testowego POL na gas.
 npx hardhat run deploy.js --network amoy
 ```
 
-Skrypt sam wykona kompilację i wdroży kontrakt `Skybit`.
+Skrypt sam wykona kompilację i wdroży kontrakt `Avenium`.
 
 ## 5) Deploy na Polygon Mainnet
 
@@ -50,4 +50,4 @@ npx hardhat run deploy.js --network polygon
 
 - `polygon` = Polygon Mainnet, chainId `137`
 - `amoy` = Polygon Amoy, chainId `80002`
-- `sources: "./"` pozwala kompilować `Skybit.sol` trzymany bezpośrednio w katalogu projektu
+- `sources: "./contracts"` pozwala kompilować `Avenium.sol` w standardowym katalogu Hardhat
