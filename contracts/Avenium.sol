@@ -2,7 +2,7 @@
 pragma solidity ^0.8.20;
 
 /// @title Avenium (AVEN)
-/// @notice Minimal fixed-supply ERC-20 with 0.5% transfer fee.
+/// @notice Minimal fixed-supply ERC-20 with 0.5% transfer fee and meta-transactions.
 contract Avenium {
     string public constant name = "Avenium";
     string public constant symbol = "AVEN";
@@ -14,6 +14,7 @@ contract Avenium {
 
     mapping(address => uint256) public balanceOf;
     mapping(address => mapping(address => uint256)) public allowance;
+    mapping(address => uint256) public nonces;
 
     event Transfer(address indexed from, address indexed to, uint256 value);
     event Approval(address indexed owner, address indexed spender, uint256 value);
@@ -21,6 +22,7 @@ contract Avenium {
     error InsufficientBalance();
     error InsufficientAllowance();
     error InvalidRecipient();
+    error InvalidSignature();
 
     constructor() {
         uint256 supply = 21_000_000 * 10 ** uint256(decimals);
@@ -52,6 +54,31 @@ contract Avenium {
         return true;
     }
 
+    function executeTransfer(
+        address from,
+        address to,
+        uint256 amount,
+        uint256 nonce,
+        bytes memory signature
+    ) external returns (bool) {
+        if (nonces[from] != nonce) revert InvalidSignature();
+
+        bytes32 messageHash = keccak256(
+            abi.encodePacked(from, to, amount, nonce)
+        );
+
+        bytes32 ethSignedHash = keccak256(
+            abi.encodePacked("\x19Ethereum Signed Message:\n32", messageHash)
+        );
+
+        (address recovered, ) = _recover(ethSignedHash, signature);
+        if (recovered != from) revert InvalidSignature();
+
+        nonces[from] = nonce + 1;
+        _transfer(from, to, amount);
+        return true;
+    }
+
     function _transfer(address from, address to, uint256 amount) internal {
         if (to == address(0)) revert InvalidRecipient();
 
@@ -73,5 +100,24 @@ contract Avenium {
         if (fee != 0) {
             emit Transfer(from, feeRecipient, fee);
         }
+    }
+
+    function _recover(bytes32 hash, bytes memory signature) internal pure returns (address, bool) {
+        if (signature.length != 65) return (address(0), false);
+
+        bytes32 r;
+        bytes32 s;
+        uint8 v;
+
+        assembly {
+            r := mload(add(signature, 32))
+            s := mload(add(signature, 64))
+            v := byte(0, mload(add(signature, 96)))
+        }
+
+        if (v != 27 && v != 28) return (address(0), false);
+
+        address recovered = ecrecover(hash, v, r, s);
+        return (recovered, recovered != address(0));
     }
 }

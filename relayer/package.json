@@ -1,0 +1,14 @@
+{
+  "name": "avenium-relayer",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "ethers": "^6.15.0",
+    "wrangler": "^4.32.0"
+  }
+}
