@@ -3,7 +3,7 @@
   "symbol": "AVEN",
   "decimals": 18,
   "chainId": 137,
-  "address": "0xYOUR_TOKEN_ADDRESS_HERE",
+  "address": "0x49008b4866C3dc41F3Ea7459a3BCaDe77cdd95E9",
   "logoURI": "https://raw.githubusercontent.com/YOUR-ORG/YOUR-REPO/main/logo.svg",
   "website": "https://YOUR-WEBSITE.example",
   "description": "Avenium is a fixed-supply ERC-20 token on Polygon with a 0.5% transfer fee."

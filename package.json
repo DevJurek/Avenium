@@ -17,7 +17,9 @@
     "claim:fund:polygon": "hardhat run fund-claim.js --network polygon",
     "claim:fund:amoy": "hardhat run fund-claim.js --network amoy",
     "deploy:amoy": "hardhat run deploy.js --network amoy",
-    "deploy:polygon": "hardhat run deploy.js --network polygon"
+    "deploy:polygon": "hardhat run deploy.js --network polygon",
+    "deploy:dex-fee-exempt:polygon": "hardhat run deploy-dex-fee-exempt.js --network polygon",
+    "app:serve": "python3 -m http.server 8080 --directory app"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^6.1.0",

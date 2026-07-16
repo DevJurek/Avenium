@@ -6,3 +6,4 @@ coverage/
 .env.local
 .env.*.local
 deployed_address.txt
+deployed_dex_fee_exempt_address.txt

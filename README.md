@@ -15,12 +15,21 @@ Use `POL` for gas on Polygon.
 - Decimals: `18`
 - Supply: `21,000,000 AVEN`
 - Transfer fee: `0.5%`
+- DEX pair fee: `0%` after the QuickSwap pair is added to the exemption list
 - Fee recipient: `0x2eb17e0C5E8e5b4fD85768695E2aC37927A84270`
+- Current DEX-fee-exempt deployment: `0x49008b4866C3dc41F3Ea7459a3BCaDe77cdd95E9`
 
 ## Gas rule
-- If the owner wallet has `POL`, owner pays gas and sends directly.
-- If the owner wallet has no `POL`, users pay gas in the normal Polygon flow.
-- The claim flow is the user-paid fallback.
+- The sender pays 100% of the gas in POL through the standard MetaMask `Send` flow.
+- The relayer does not submit or sponsor AVEN transfers.
+- The sender needs enough AVEN to cover the requested amount, including the 0.5% transfer fee, and enough POL for gas.
+
+## Direct transfer app
+```bash
+npm run app:serve
+```
+
+Open [http://localhost:8080](http://localhost:8080) in a browser with MetaMask. The application submits the normal `transfer()` transaction from the connected wallet, so MetaMask displays and charges the full gas cost.
 
 ## Use cases
 - `deploy.js` — deploy Avenium and save the contract address
@@ -35,8 +44,10 @@ Use `POL` for gas on Polygon.
 
 ## Files
 - `contracts/Avenium.sol` — token contract
+- `contracts/AveniumDexFeeExempt.sol` — token contract with configurable DEX-pair fee exemption
 - `hardhat.config.js` — Hardhat config for Polygon Mainnet and Amoy
 - `deploy.js` — deployment script that writes `deployed_address.txt`
+- `deploy-dex-fee-exempt.js` — deployment script for the DEX-fee-exempt token
 - `package.json` — npm scripts
 - `.env.example` — environment template
 

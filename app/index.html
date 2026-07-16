@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07131d" />
+    <title>Avenium | Transfer bez POL</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="Avenium">
+          <span class="brand-mark">A</span>
+          <span>Avenium</span>
+        </a>
+        <button class="wallet-button" id="connect-wallet" type="button">Polacz portfel</button>
+      </header>
+
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">Polygon mainnet · AVEN</p>
+        <h1 id="page-title">Wyslij AVEN bez POL.</h1>
+        <p class="intro">Wysylasz bezposrednio z MetaMask. Twoj portfel publikuje transfer i oplaca caly gas.</p>
+      </section>
+
+      <section class="transfer-grid">
+        <form class="transfer-card" id="transfer-form">
+          <div class="card-heading">
+            <div>
+            <p class="eyebrow">Transfer bezposredni</p>
+              <h2>Nowe zlecenie</h2>
+            </div>
+            <span class="network">Polygon</span>
+          </div>
+
+          <label for="recipient">Adres odbiorcy</label>
+          <input id="recipient" name="recipient" type="text" placeholder="0x..." autocomplete="off" spellcheck="false" required />
+
+          <label for="amount">Kwota</label>
+          <div class="amount-field">
+            <input id="amount" name="amount" type="text" inputmode="decimal" placeholder="100" autocomplete="off" required />
+            <span>AVEN</span>
+          </div>
+
+          <div class="fee-note">
+            <span>Odbiorca dostanie 99.5% kwoty.</span>
+            <strong id="fee-summary">Podaj kwote</strong>
+          </div>
+
+          <button class="submit-button" id="submit-transfer" type="submit" disabled>Wyslij przez MetaMask</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite">Polacz MetaMask, aby rozpoczac.</p>
+        </form>
+
+        <aside class="info-panel">
+          <div class="pulse"><span></span> Relayer aktywny</div>
+          <h2>Jak to dziala?</h2>
+          <ol>
+            <li>Laczysz portfel z Polygon.</li>
+            <li>MetaMask prosi o potwierdzenie transakcji.</li>
+            <li>Twoj portfel placi 100% gasu w POL.</li>
+          </ol>
+          <div class="rule">
+            <span>Wymagane saldo</span>
+            <strong>Kwota AVEN + 0.5% fee</strong>
+          </div>
+        </aside>
+      </section>
+
+      <section class="transaction-result" id="transaction-result" hidden>
+        <p class="eyebrow">Transfer wyslany</p>
+        <a id="transaction-link" target="_blank" rel="noreferrer"></a>
+      </section>
+    </main>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
